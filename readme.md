@@ -1,0 +1,1 @@
+ask saving all variables at exiting. (and auto load if a saved file found.)
