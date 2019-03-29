@@ -1,7 +1,7 @@
 module Workspace
 
-using REPL
 using InteractiveUtils
+using REPL
 const LE = REPL.LineEdit
 
 function hook_REPL_aborting()
@@ -46,6 +46,7 @@ function select_variables()
     choice = REPL.TerminalMenus.request(menu)
     isempty(choice) && return println(stderr, "cancel")
     choice = names[collect(choice)]
+    @eval Workspace using JLD2
     @eval Main $(JLD2).@save(".juliadata", $(choice...))
     println(stderr, "data saved as .juliadata")
     exit()
